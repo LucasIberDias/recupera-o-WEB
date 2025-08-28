@@ -1,9 +1,10 @@
 let lista = [];
+let filtroAtual = "todos";
+
 function removerItem(index) {
   lista.splice(index, 1);
   atualizarLista();
 }
-let filtroAtual = "todos";
 
 function adicionarItem() {
   const entradaItem = document.getElementById("entradaItem");
@@ -29,16 +30,13 @@ function atualizarLista() {
 
   itensFiltrados.forEach((item, index) => {
     const li = document.createElement("li");
-    li.className = `list-group-item d-flex justify-content-between align-items-center fade-in ${
-      item.comprado ? "comprado" : ""
-    }`;
+    li.className = `list-group-item d-flex justify-content-between align-items-center fade-in ${item.comprado ? "comprado" : ""}`;
     const span = document.createElement("span");
     span.innerHTML = `${item.nome} <span class="badge bg-primary rounded-pill">${item.quantidade}</span>`;
     const div = document.createElement("div");
     div.className = "btn-group";
     div.innerHTML = `<button class="btn btn-sm btn-outline-success" onclick="marcarComprado(${index})">✔</button>
-        <button class="btn btn-sm btn-outline-danger" onclick="removerItem(${index})">✖</button>
-        `;
+                     <button class="btn btn-sm btn-outline-danger" onclick="removerItem(${index})">✖</button>`;
     li.appendChild(span);
     li.appendChild(div);
     listaCompras.appendChild(li);
